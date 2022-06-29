@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../../components/header/Header";
 import HomePageComponent from '../../components/homePage/ComponentHome'
@@ -9,17 +9,20 @@ import GlobalStyle from "../../GlobalStyled";
 const HomePage = (props)=>{
    const [dataPokemon , setDataPokemon] = useState([])
 
-   const getPokemon = ()=>{
+   useEffect(()=>{
     const url =" https://pokeapi.co/api/v2/pokemon/"
 
-        axios.get(url).then((res)=>{
-            setDataPokemon(res.data.results)
-            // console.log(res.data.results)
-            
-        }).catch((err)=>{
-            console.log(err.response)
-        })
-   }
+    axios.get(url).then((res)=>{
+        setDataPokemon(res.data.results)
+        // console.log(res.data.results)
+        
+    }).catch((err)=>{
+        console.log(err.response)
+    })
+
+   } ,[])
+   
+   
 
    const mapearPokemon = dataPokemon.map((pokemons,index)=>{
         return <div key={index}>

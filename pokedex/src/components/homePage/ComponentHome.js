@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import {ContainerHome , DivButton} from './homeStyled'
+import {ContainerHome , DivButton } from './homeStyled'
 
 const HomePageComponent = (props)=>{
-    const [pngPoke , setPngPoke] = useState("")
+    const [pngPoke , setPngPoke] = useState([])
 
 
     useEffect((id)=>{
