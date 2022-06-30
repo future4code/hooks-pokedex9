@@ -3,32 +3,42 @@ import axios from "axios";
 import styled from "styled-components";
 import {ContainerHome , DivButton } from './homeStyled'
 import { navigate, useNavigate } from "react-router-dom";
+import useRequestData from "../../customHook/useRequestData";
+import PokedexPage from "../../pages/PokedexPage/PokedexPage";
+
 
 const HomePageComponent = (props)=>{
-    const [pngPoke , setPngPoke] = useState([])
-    
+    const [pokePhoto ] = useRequestData(`https://pokeapi.co/api/v2/pokemon/${props.indexPoke}`)
     const navigate = useNavigate("")
-
-    useEffect((id)=>{
-        const url = `https://pokeapi.co/api/v2/pokemon/${props.indexPoke}`
- 
-         axios.get(url).then((res)=>{
-            setPngPoke(res.data.sprites.front_default)
-           console.log(res.data)
-         }).catch((err)=>{
-             console.log(err.response)
-         })
-    }, [pngPoke])
-    
    
+
+   const addToPokedex = (name) =>{
+    if(name === props.pokemonsName){
+        <PokedexPage photoPoke = {pokePhoto}/>
+    }else{
+        return false
+    }
+
+   }
+   
+  
+
+    // const getColor = (id)=>{
+    //     const url = `https://pokeapi.co/api/v2/pokemon-species/${id}`
+    //     axios.get(url).then((res)=>{
+    //         setColor(res.data.color.name)
+    //     }).catch((err)=>{
+    //         console.log(err.response)
+    //     })
+    // }
     return(
         <div>
-           <ContainerHome>
-            <img src={pngPoke}/>
-            <p>{props.pokemonsName}</p>
+           <ContainerHome value={"color"}>
+            <img src={pokePhoto}/>
+            <p>{props.pokemonsName.toUpperCase()}</p>
             <DivButton>
             <button onClick={()=> navigate (`${props.pokemonsName}`)}  >Ver Detalhes</button>
-            <button>adicionar</button>
+            <button onClick={() =>addToPokedex(props.pokemonsName)}>adicionar</button>
             </DivButton>
             
            </ContainerHome>

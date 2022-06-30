@@ -3,108 +3,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import LogoPoke from "./LogoPoke"
-
-const TopBar = styled.div`
-    height: 8vh;
-    background: rgb(48, 167, 215);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    color: white;
-    position: relative;
-`
-
-const PageContainer = styled.div`
-    background: rgb(241, 241, 241);
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    
-`
-
-const PokePhotoContainer = styled.div`
-align-self: center;
-    height: 75%;
-    display: flex;
-    flex-direction: column;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-`
-const PhotoPoke = styled.img`
-    height: 25vh;
-    width: 25vh;
-    background: rgb(241, 241, 241);
-`
-const PokePowers = styled.div`
-    background: rgb(241, 241, 241);
-    align-self: center;
-    height: 75%;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-left: 20px;
-
-`
-const PokeMore = styled.div`
-    align-self: center;
-    height: 75%;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-`
-const PokeType = styled.div`
-    background: rgb(241, 241, 241);
-    height: 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-left: 20px;
-`
-const PokeSkills = styled.div`
-    background: rgb(241, 241, 241);
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-left: 20px;
-`
-
-//////////////////////////////////////////////////////////////////
-
+import { TopBar , PageContainer , PokePowers , PokePhotoContainer , PhotoPoke , PokeMore,PokeType,PokeSkills } from "./DetailsStyled";
+import usePokemonsDetails from '../../customHook/usePokemonsDetails'
 
 const DetailsPage = () => {
     
 const navigate = useNavigate("")
 const params = useParams("")
 
-const [nome , setNome] = useState([])
-const [habilidade, setHabilidade] = useState([])
-const [stats, setStats] = useState([])
-const [tipo, setTipo] = useState([])
-const [fotoFrente, setFotoFrente] = useState([])
-const [fotoCosta, setFotoCosta] = useState([])
-const [shinyFrente, setShinyFrente] = useState([])
+    const [name , abilities , stats , type , photoFront , photoBack ] = usePokemonsDetails(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
 
-useEffect((id)=>{
-    const url = `https://pokeapi.co/api/v2/pokemon/${params.id}`
-    
-    axios.get(url).then((res)=>{
-        setNome(res.data.name.toUpperCase())
-        setHabilidade(res.data.abilities)
-        setStats(res.data.stats)
-        setTipo(res.data.types)
-        setFotoFrente(res.data.sprites.front_default)
-        setFotoCosta(res.data.sprites.back_default)
-        setShinyFrente(res.data.sprites.front_shiny)
-    }).catch((err)=>{
-        console.log(err.response)
-    })
-}, [nome])
-
-const renderHabilidade = habilidade && habilidade.map((hab) => {
+const renderHabilidade = abilities && abilities.map((hab) => {
     return (<li>{hab.ability.name.toUpperCase()}</li>)
 })
 
@@ -113,7 +22,7 @@ const renderStats = stats && stats.map((sta) => {
     )
 })
 
-const renderType = tipo && tipo.map((typ) => {
+const renderType = type && type.map((typ) => {
     return (<li>{typ.type.name.toUpperCase()}</li>)
 })
 
@@ -122,7 +31,7 @@ const renderType = tipo && tipo.map((typ) => {
         <>
         <TopBar>
                 <button onClick={() => navigate("/")}>Voltar</button>
-                <h3>{nome}</h3>
+                <h3>{name}</h3>
                 <button>Add/Remover da Poke</button>
         </TopBar>
         
@@ -131,8 +40,8 @@ const renderType = tipo && tipo.map((typ) => {
 
 
                 
-                <PhotoPoke src={fotoFrente}/>
-                <PhotoPoke src={fotoCosta}/>
+                <PhotoPoke src={photoFront}/>
+                <PhotoPoke src={photoBack}/>
             </PokePhotoContainer>
             <PokePowers>
                 <h2>Estatísticas</h2>

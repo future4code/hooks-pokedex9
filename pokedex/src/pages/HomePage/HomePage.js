@@ -6,6 +6,7 @@ import { ContainerHome1 } from "./HomePageStyled";
 import styled from "styled-components";
 import GlobalStyle from "../../GlobalStyled";
 
+
 const HomePage = (props)=>{
    const [dataPokemon , setDataPokemon] = useState([])
 
@@ -14,7 +15,7 @@ const HomePage = (props)=>{
 
     axios.get(url).then((res)=>{
         setDataPokemon(res.data.results)
-        // console.log(res.data.results)
+        console.log(res.data.results)
         
     }).catch((err)=>{
         console.log(err.response)

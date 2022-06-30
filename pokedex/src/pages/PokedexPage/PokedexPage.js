@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom"
 import { goBack, goToDetail } from "../../Router/Coordinator"
 import { ButtonBack, Footer, HeaderPokedex, Titulo } from "./PokedexPageStyled"
 
-const PokedexPage = ()=>{
-  const navigate = useNavigate()
+const PokedexPage = (props)=>{
+  const navigate = useNavigate("")
+  
   return(
     <div>
 

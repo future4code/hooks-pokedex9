@@ -5,6 +5,7 @@ export const ContainerHome = styled.div`
    padding: 30px;
    width: 20vw;
    text-align: center;
+   background-color: ${(props) => props.color};
 `
 export const DivButton = styled.div`
     display: flex;
