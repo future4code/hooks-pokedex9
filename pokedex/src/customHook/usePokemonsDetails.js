@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState , useEffect } from "react";
+import TestandoLogo from "../Teste/testehover";
 
 const usePokemonsDetails = (url) =>{
     const [name , setName] = useState(undefined)
@@ -18,11 +19,17 @@ const usePokemonsDetails = (url) =>{
             setType(res.data.types)
             setPhotoFront(res.data.sprites.front_default)
             setPhotoBack(res.data.sprites.back_default)
+           
         }).catch((err)=>{
             console.log(err.response)
         })
     },[url])
-    return([name , abilities , stats , type , photoFront , photoBack])
+    
+    return(
+    
+        [name , abilities , stats , type , photoFront , photoBack]
+       
+        )
 
 }
 

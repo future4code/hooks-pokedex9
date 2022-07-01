@@ -11,7 +11,7 @@ const DetailsPage = () => {
 const navigate = useNavigate("")
 const params = useParams("")
 
-    const [name , abilities , stats , type , photoFront , photoBack ] = usePokemonsDetails(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
+ const [name , abilities , stats , type , photoFront , photoBack ] = usePokemonsDetails(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
 
 const renderHabilidade = abilities && abilities.map((hab) => {
     return (<li>{hab.ability.name.toUpperCase()}</li>)

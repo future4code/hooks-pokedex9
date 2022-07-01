@@ -5,6 +5,7 @@ import HomePageComponent from '../../components/homePage/ComponentHome'
 import { ContainerHome1 } from "./HomePageStyled";
 import styled from "styled-components";
 import GlobalStyle from "../../GlobalStyled";
+import TestandoLogo from "../../Teste/testehover";
 
 
 const HomePage = (props)=>{
@@ -24,10 +25,18 @@ const HomePage = (props)=>{
    } ,[])
    
    
+   const colors = {
+    white :  (0,0,255),
+    red :  	(65,105,225),
+    blue : "blue"
+}
 
    const mapearPokemon = dataPokemon.map((pokemons,index)=>{
         return <div key={index}>
-            <HomePageComponent pokemonsName={pokemons.name} indexPoke={index+1}/>
+            <HomePageComponent color
+            
+             pokemonsName={pokemons.name} indexPoke={index+1}/>
+            
             </div>
         
    })
