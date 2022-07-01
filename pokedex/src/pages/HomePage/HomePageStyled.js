@@ -6,5 +6,5 @@ export const ContainerHome1 = styled.div`
     grid-template-columns: repeat(4,25vw);
     width: 100vw;
     height: auto;
-    background-color: yellow;
+    /* background-color: ${props => props.color || " 	#778899" }; */
 `
