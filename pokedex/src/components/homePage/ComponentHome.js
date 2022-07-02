@@ -6,26 +6,26 @@ import { navigate, useNavigate } from "react-router-dom";
 import useRequestData from "../../customHook/useRequestData";
 import PokedexPage from "../../pages/PokedexPage/PokedexPage";
 import usePokemonsDetails from "../../customHook/usePokemonsDetails";
-
+import useColorPoke from "../../customHook/useColorPoke";
 
 
 const HomePageComponent = (props) => {
     const [pokePhoto, photo1] = useRequestData(`https://pokeapi.co/api/v2/pokemon/${props.indexPoke}`)
     
-    const [corPoke , setCorPoke] = useState("")
+    const [corPoke] = useColorPoke(`https://pokeapi.co/api/v2/pokemon-species/${props.indexPoke}`)
     const navigate = useNavigate("")
     
 //=========CORES DOS CARDS POKEMON==============
-    useEffect(()=>{
-        const url = ` https://pokeapi.co/api/v2/pokemon-species/${props.indexPoke}`
+    // useEffect(()=>{
+    //     const url = ` https://pokeapi.co/api/v2/pokemon-species/${props.indexPoke}`
 
-        axios.get(url).then((res)=>{
-            setCorPoke(res.data.color.name)
-            console.log(res.data.color.name)
-        }).catch((err)=>{
-            console.log(err.response)
-        })
-    },[])
+    //     axios.get(url).then((res)=>{
+    //         setCorPoke(res.data.color.name)
+    //         console.log(res.data.color.name)
+    //     }).catch((err)=>{
+    //         console.log(err.response)
+    //     })
+    // },[])
 //=========CORES DOS CARDS POKEMON==============
     const logos = 
         {

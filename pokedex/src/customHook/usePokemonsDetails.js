@@ -20,7 +20,6 @@ const usePokemonsDetails = (url) =>{
             setType(res.data.types)
             setPhotoFront(res.data.sprites.front_default)
             setPhotoBack(res.data.sprites.back_default)
-            console.log(res.data.sprites)
            
         }).catch((err)=>{
             console.log(err.response)
