@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import LogoPoke from "./LogoPoke"
 import { TopBar , PageContainer , PokePowers , PokePhotoContainer , PhotoPoke , PokeMore,PokeType,PokeSkills } from "./DetailsStyled";
+
 import usePokemonsDetails from '../../customHook/usePokemonsDetails'
 
 const DetailsPage = () => {
@@ -36,14 +37,13 @@ const renderType = type && type.map((typ) => {
         </TopBar>
         
         <PageContainer>
+        
             <PokePhotoContainer>
-
-
-                
                 <PhotoPoke src={photoFront}/>
                 <PhotoPoke src={photoBack}/>
             </PokePhotoContainer>
             <PokePowers>
+
                 <h2>Estatísticas</h2>
                 {renderStats}
 
@@ -60,6 +60,8 @@ const renderType = type && type.map((typ) => {
                 
                 </PokeSkills>
             </PokeMore>
+            
+            
         </PageContainer>
         </>
     )

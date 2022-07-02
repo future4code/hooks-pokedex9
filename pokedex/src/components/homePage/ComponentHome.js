@@ -11,25 +11,27 @@ import usePokemonsDetails from "../../customHook/usePokemonsDetails";
 
 const HomePageComponent = (props) => {
     const [pokePhoto, photo1] = useRequestData(`https://pokeapi.co/api/v2/pokemon/${props.indexPoke}`)
+    
+    const [corPoke , setCorPoke] = useState("")
     const navigate = useNavigate("")
-    const color ={
-        azul :  "#191970",
-        bb : "#6495ED"
-    }
+    
+//=========CORES DOS CARDS POKEMON==============
+    useEffect(()=>{
+        const url = ` https://pokeapi.co/api/v2/pokemon-species/${props.indexPoke}`
 
-    //    const addToPokedex = (name) =>{
-    //     if(name === props.pokemonsName){
-    //         console.log(name)
-    //     }else{
-    //         return false
-    //     }
-
-    //    }
+        axios.get(url).then((res)=>{
+            setCorPoke(res.data.color.name)
+            console.log(res.data.color.name)
+        }).catch((err)=>{
+            console.log(err.response)
+        })
+    },[])
+//=========CORES DOS CARDS POKEMON==============
     const logos = 
         {
             url: pokePhoto,
             hoverUrl: photo1,
-            color : color.bb
+            color : corPoke
         }
   
     return (
@@ -42,8 +44,10 @@ const HomePageComponent = (props) => {
                     <DivButton>
                         <button onClick={() => navigate(`${props.pokemonsName}`)}  >Ver Detalhes</button>
                         <button>adicionar</button>
+                       
                     </DivButton>
             </ContainerHome>
+            
         </div>
       
     )
