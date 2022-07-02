@@ -1,6 +1,7 @@
 
 import styled from "styled-components";
 
+
 export const TopBar = styled.div`
     height: 8vh;
     background: rgb(48, 167, 215);
@@ -12,58 +13,79 @@ export const TopBar = styled.div`
 `
 
 export const PageContainer = styled.div`
-    background: rgb(241, 241, 241);
+    /* background: rgb(241, 241, 241);
     padding: 15px;
     display: flex;
+    justify-content: center; */
+    height: 100vh;
+    /* border: 1px solid black;
+    width: 50vh;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center; */
     
 `
 
-export const PokePhotoContainer = styled.div`
-align-self: center;
-    height: 75%;
-    display: flex;
-    flex-direction: column;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-`
+// export const PokePhotoContainer = styled.div`
+// /* align-self: center;
+//     height: 75%;
+//     display: flex;
+//     flex-direction: column;
+//     -webkit-box-pack: justify;
+//     justify-content: space-between; */
+// `
 export const PhotoPoke = styled.img`
-    height: 25vh;
+    /* height: 25vh;
     width: 25vh;
-    background: rgb(241, 241, 241);
+    background: rgb(241, 241, 241); */
 
 `
 export const PokePowers = styled.div`
-    background: rgb(241, 241, 241);
+    /* background: rgb(241, 241, 241);
     align-self: center;
     height: 75%;
     width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding-left: 20px;
+    padding-left: 20px; */
 
 `
 export const PokeMore = styled.div`
-    align-self: center;
+    /* align-self: center;
     height: 75%;
     width: 300px;
     display: flex;
     flex-direction: column;
     -webkit-box-pack: justify;
-    justify-content: space-between;
+    justify-content: space-between; */
 `
 export const PokeType = styled.div`
-    background: rgb(241, 241, 241);
+    /* background: rgb(241, 241, 241);
     height: 10%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around; */
 `
 export const PokeSkills = styled.div`
-    background: rgb(241, 241, 241);
+    /* background: rgb(241, 241, 241);
     height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding-left: 20px;
+    padding-left: 20px; */
+`
+//=============CARTA POKEMON =========
+export const CardContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+   
+`
+
+export const PokePhotoContainer = styled.div`
+    border: 10px solid black;
+    padding: 10px;
 `

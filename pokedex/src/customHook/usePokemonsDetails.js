@@ -10,6 +10,7 @@ const usePokemonsDetails = (url) =>{
     const [type, setType] = useState(undefined)
     const [photoFront, setPhotoFront] = useState(undefined)
     const [photoBack, setPhotoBack] = useState(undefined)
+    
  
     useEffect(()=>{
         axios.get(url).then((res)=>{
@@ -19,6 +20,7 @@ const usePokemonsDetails = (url) =>{
             setType(res.data.types)
             setPhotoFront(res.data.sprites.front_default)
             setPhotoBack(res.data.sprites.back_default)
+            console.log(res.data.sprites)
            
         }).catch((err)=>{
             console.log(err.response)
