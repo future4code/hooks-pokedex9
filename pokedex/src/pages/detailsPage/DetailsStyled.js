@@ -17,7 +17,7 @@ export const PageContainer = styled.div`
     padding: 15px;
     display: flex;
     justify-content: center; */
-    height: 100vh;
+    /* height: 100vh; */
     /* border: 1px solid black;
     width: 50vh;
     display: flex;
