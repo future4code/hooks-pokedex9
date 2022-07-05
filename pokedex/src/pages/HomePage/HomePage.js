@@ -28,7 +28,7 @@ const HomePage = (props)=>{
    const mapearPokemon = dataPokemon.map((pokemons,index)=>{
         return <div key={index}>
             <HomePageComponent
-             pokemonsName={pokemons.name}/>
+             pokemonsName={pokemons.name} pokemon={pokemons}/>
             
             </div>
         

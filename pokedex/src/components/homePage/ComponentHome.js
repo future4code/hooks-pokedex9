@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { ContainerHome, DivButton, Logo, TestandoHei } from './homeStyled'
@@ -9,15 +9,24 @@ import useRequestData from "../../customHook/useRequestData";
 import useColorPoke from "../../customHook/useColorPoke";
 import GlobalStyle from "../../GlobalStyled";
 import PokedexPage from "../../pages/PokedexPage/PokedexPage";
+import { GlobalStateDetails } from "../../global/GlobalStateDetails";
 
 
 const HomePageComponent = (props) => {
-    const [pokePhoto, photo1] = useRequestData(`https://pokeapi.co/api/v2/pokemon/${props.pokemonsName}`)
-    
+    const { states,requests } = useContext(GlobalStateDetails);
+
+    const {detailsPokemon} = requests
+    const {photoHome , photoHomeBack } = states 
+
+    // const [pokePhoto, photo1] = useRequestData(`https://pokeapi.co/api/v2/pokemon/${props.pokemonsName}`)
     const [corPoke] = useColorPoke(`https://pokeapi.co/api/v2/pokemon-species/${props.pokemonsName}`)
     const navigate = useNavigate("")
     const [pokedex , setPokedex] = useState({})
     
+    useEffect(()=>{
+        detailsPokemon(`${props.pokemonsName}`)
+    },[])
+    console.log(props.pokemonsName)
 //=========CORES DOS CARDS POKEMON==============
     // useEffect(()=>{
     //     const url = ` https://pokeapi.co/api/v2/pokemon-species/${props.indexPoke}`
@@ -48,14 +57,13 @@ const HomePageComponent = (props) => {
 //=========CORES DOS CARDS POKEMON==============
     const logos = 
         {
-            photoP: pokePhoto,
-            hoverUrl: photo1,
+            photoP: photoHome,
+            hoverUrl: photoHomeBack,
             color : corPoke
         }
        
     return (
         <TestandoHei > 
-           
             <ContainerHome color={logos.color}     >
                     <Logo               
                     background={logos.photoP} 
@@ -68,9 +76,7 @@ const HomePageComponent = (props) => {
                     </DivButton>
             
             </ContainerHome>
-            <div>
-           
-            </div>
+        
            
         </TestandoHei>
      
