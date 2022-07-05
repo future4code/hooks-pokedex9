@@ -7,3 +7,8 @@ export const HeaderStyled = styled.div`
     align-items: center;
    
 `
+
+export const PokedexImg = styled.img`
+width: 50px;
+height: 50px;
+`

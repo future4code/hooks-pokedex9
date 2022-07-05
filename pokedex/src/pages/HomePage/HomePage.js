@@ -16,7 +16,7 @@ const HomePage = (props)=>{
 
     axios.get(url).then((res)=>{
         setDataPokemon(res.data.results)
-        console.log(res.data.results)
+        // console.log(res.data.results)
         
     }).catch((err)=>{
         console.log(err.response)
@@ -24,18 +24,11 @@ const HomePage = (props)=>{
 
    } ,[])
    
-   
-   const colors = {
-    white :  (0,0,255),
-    red :  	(65,105,225),
-    blue : "blue"
-}
 
    const mapearPokemon = dataPokemon.map((pokemons,index)=>{
         return <div key={index}>
-            <HomePageComponent color
-            
-             pokemonsName={pokemons.name} indexPoke={index+1}/>
+            <HomePageComponent
+             pokemonsName={pokemons.name}/>
             
             </div>
         
@@ -48,9 +41,6 @@ const HomePage = (props)=>{
             <ContainerHome1>
             {mapearPokemon}
             </ContainerHome1>
-          
-          
-            
         </div>
     )
 }

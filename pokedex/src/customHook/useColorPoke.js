@@ -10,7 +10,6 @@ const useColorPoke = (url) =>{
 
         axios.get(url).then((res)=>{
             setData(res.data.color.name)
-            
         }).catch((err)=>{
             console.log(err.response)
         })

@@ -1,7 +1,8 @@
 import React from "react";
-import { HeaderStyled } from "./headerStyled";
+import { HeaderStyled , PokedexImg } from "./headerStyled";
 import { useNavigate } from "react-router-dom";
 import { goToPokedex } from "../../Router/Coordinator";
+import Pokedex from '../../img/pokedex.png'
 
 
 
@@ -11,7 +12,7 @@ const navigate=useNavigate()
         <HeaderStyled>
             <h1>Lista de Pokemon</h1>
             <div>
-                <button onClick={()=> goToPokedex(navigate)}>Pokedex</button>
+               <PokedexImg onClick={()=> goToPokedex(navigate)} src={Pokedex} alt="Pokedex"/>
             </div>
         </HeaderStyled>
     )
