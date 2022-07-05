@@ -12,7 +12,7 @@ const navigate=useNavigate()
         <HeaderStyled>
             <h1>Lista de Pokemon</h1>
             <div>
-               <PokedexImg onClick={()=> goToPokedex(navigate)} src={Pokedex} alt="Pokedex"/>
+               <PokedexImg onClick={() => navigate("/pokedex")}  src={Pokedex} alt="Pokedex"/>
             </div>
         </HeaderStyled>
     )

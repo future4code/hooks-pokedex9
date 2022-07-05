@@ -67,7 +67,7 @@ const renderType = type && type.map((typ) => {
                         </CardGridHab>
 
                     </CardPokeContainer>
-                    <TopBar color={corPoke}>
+                    <TopBar >
                         <img onClick={() => navigate("/")} src={setaEsquerda} alt="Voltar"/>
 
                         <img src={adicionar} alt="Adicionar"/>
