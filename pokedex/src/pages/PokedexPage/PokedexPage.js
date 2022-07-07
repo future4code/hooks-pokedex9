@@ -15,8 +15,9 @@ import { ContainerHome1 } from '../HomePage/HomePageStyled'
 
 const PokedexPage = props => {
   const navigate = useNavigate('')
-  const { states } = useContext(GlobalStateDetails)
+  const { states, requests } = useContext(GlobalStateDetails)
   const { pokedex } = states
+  const { removePokemon } = requests
 
   const mapPokedex =
     pokedex &&
@@ -26,7 +27,7 @@ const PokedexPage = props => {
           <DivImage src={poke.sprites.other.dream_world.front_default} />
           <Name>{poke.name}</Name>
           <DivButtons>
-            <ButtonsPokedex>Deletar</ButtonsPokedex>
+            <ButtonsPokedex onClick={()=>removePokemon(props.url)}>Deletar</ButtonsPokedex>
             <ButtonsPokedex
               onClick={() => {
                 navigate(`/${poke.name}`)
