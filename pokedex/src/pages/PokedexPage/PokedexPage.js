@@ -1,42 +1,53 @@
-import { useContext } from "react"
-import { useNavigate } from "react-router-dom"
-import { GlobalStateDetails } from "../../global/GlobalStateDetails"
-import { goBack, goToDetail } from "../../Router/Coordinator"
-import { ButtonBack, Footer, HeaderPokedex, Titulo } from "./PokedexPageStyled"
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { GlobalStateDetails } from '../../global/GlobalStateDetails'
+import { goBack } from '../../Router/Coordinator'
+import {
+  ButtonBack,
+  ButtonsPokedex,
+  CardContainer,
+  DivButtons,
+  DivImage,
+  Name
+} from './PokedexPageStyled'
+import { HeaderStyled } from '../../components/header/headerStyled'
+import { ContainerHome1 } from '../HomePage/HomePageStyled'
 
-const PokedexPage = (props)=>{
-  const navigate = useNavigate("")
-  const {states} = useContext(GlobalStateDetails)
-  const { pokedex} = states
+const PokedexPage = props => {
+  const navigate = useNavigate('')
+  const { states } = useContext(GlobalStateDetails)
+  const { pokedex } = states
 
+  const mapPokedex =
+    pokedex &&
+    pokedex.map((poke, index) => {
+      return (
+        <CardContainer key={index}>
+          <DivImage src={poke.sprites.other.dream_world.front_default} />
+          <Name>{poke.name}</Name>
+          <DivButtons>
+            <ButtonsPokedex>Deletar</ButtonsPokedex>
+            <ButtonsPokedex
+              onClick={() => {
+                navigate(`/${poke.name}`)
+              }}
+            >
+              Detalhes
+            </ButtonsPokedex>
+          </DivButtons>
+        </CardContainer>
+      )
+    })
 
- 
-  const mapPokedex = pokedex && pokedex.map((poke, index)=>{
-    return(
-      <div key={index}>
-        {poke.name}
-        <img src={poke.sprites.other.dream_world.front_default}/>
+  return (
+    <>
+      <HeaderStyled>
+        <h1>POKEDEX</h1>
 
-      </div>
-    )
-  })
-
-  return(
-    <div>
-     <div>
-     <HeaderPokedex>
-      <Titulo>POKEDEX</Titulo>
-      <ButtonBack onClick={()=> goBack(navigate)}>Voltar</ButtonBack>
-     
-      <ButtonBack onClick={()=> goToDetail(navigate)}>Pagina Detalhes</ButtonBack>
-     
-      </HeaderPokedex>
-     </div>
-    {mapPokedex}
-    
-      
-      
-    </div>
+        <ButtonBack onClick={() => goBack(navigate)}>Voltar</ButtonBack>
+      </HeaderStyled>
+      <ContainerHome1>{mapPokedex}</ContainerHome1>
+    </>
   )
 }
 
