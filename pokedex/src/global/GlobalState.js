@@ -11,11 +11,11 @@ const GlobalState = (props) =>{
     const [type, setType] = useState(undefined)
     const [photoFront, setPhotoFront] = useState(undefined)
     const [photoBack, setPhotoBack] = useState(undefined)
-    const [photoHome, setPhotoHome] = useState("")
-    const [photoHomeBack , setPhotoHomeBack] = useState("")
+    const [pokedex,setPokedex ]= useState([])
 
     const detailsPokemon = (id) =>{
         const url = (`https://pokeapi.co/api/v2/pokemon/${id}`)
+
         axios.get(url).then((res)=>{
             setName(res.data.name.toUpperCase())
             setAbilities(res.data.abilities)
@@ -23,8 +23,7 @@ const GlobalState = (props) =>{
             setType(res.data.types)
             setPhotoFront(res.data.sprites.other.dream_world.front_default)
             setPhotoBack(res.data.sprites.other.dream_world.back_default)
-            setPhotoHome( res.data.sprites.front_default)
-            setPhotoHomeBack(res.data.sprites.back_default)
+           
            
         }).catch((err)=>{
             console.log(err.response)
@@ -32,10 +31,31 @@ const GlobalState = (props) =>{
 
     }
     
-    const states= {name , abilities , stats , type , photoFront , photoBack , photoHome , photoHomeBack }
-    const requests = {detailsPokemon}
+    const color2 = "grey"
+    const addInPokedex = (product)=>{
+       const index = pokedex.findIndex((pokemonsInPokedex)=>{
+        if(pokemonsInPokedex.name === product.name){
+            return true
+        }else{
+            return false
+        }
+       })
+       if(index === -1){
+        const newPokedex = [...pokedex , product]
+        setPokedex(newPokedex)
+       }else{
+        alert("Pokemon ja foi adicionado")
+       }
+      console.log(pokedex)
+    }
+    
+
+ 
+
+    const states= {name , abilities , stats , type , photoFront , photoBack , pokedex}
+    const requests = {detailsPokemon , addInPokedex}
     return(
-    <GlobalStateDetails.Provider value={{states , requests , detailsPokemon}}>
+    <GlobalStateDetails.Provider value={{states , requests}}>
       {props.children}
     </GlobalStateDetails.Provider>
     )

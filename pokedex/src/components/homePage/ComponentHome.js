@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { ContainerHome, DivButton, Logo, TestandoHei } from './homeStyled'
-import { navigate, useNavigate } from "react-router-dom";
+import { navigate, useNavigate, useParams } from "react-router-dom";
 import detalhes from '../../img/detalhes.png'
 import adicionar from '../../img/adicionar.png'
 import useRequestData from "../../customHook/useRequestData";
@@ -13,20 +13,15 @@ import { GlobalStateDetails } from "../../global/GlobalStateDetails";
 
 
 const HomePageComponent = (props) => {
-    const { states,requests } = useContext(GlobalStateDetails);
+    const {states ,requests } = useContext(GlobalStateDetails); 
+    
+    const [pokePhoto, photo1 , pokeDados] = useRequestData(`https://pokeapi.co/api/v2/pokemon/${props.pokemonsName}`)
+    
 
-    const {detailsPokemon} = requests
-    const {photoHome , photoHomeBack } = states 
-
-    // const [pokePhoto, photo1] = useRequestData(`https://pokeapi.co/api/v2/pokemon/${props.pokemonsName}`)
     const [corPoke] = useColorPoke(`https://pokeapi.co/api/v2/pokemon-species/${props.pokemonsName}`)
     const navigate = useNavigate("")
-    const [pokedex , setPokedex] = useState({})
-    
-    useEffect(()=>{
-        detailsPokemon(`${props.pokemonsName}`)
-    },[])
-    console.log(props.pokemonsName)
+    const params = useParams()
+    const {detailsPokemon , addInPokedex} = requests
 //=========CORES DOS CARDS POKEMON==============
     // useEffect(()=>{
     //     const url = ` https://pokeapi.co/api/v2/pokemon-species/${props.indexPoke}`
@@ -41,42 +36,36 @@ const HomePageComponent = (props) => {
    
     
 
-    // const addPokedex = () =>{
-    //     const addInPokedex = {
-    //         pokeName :props.pokemonsName,
-    //         photoPoke : photo1,
-    //         pokeCor : corPoke,
-    //     }
-        
-    //     setPokedex({...addInPokedex , quantity:1})
-    //     console.log(pokedex)
-      
-    // }
+   
   
    
 //=========CORES DOS CARDS POKEMON==============
     const logos = 
         {
-            photoP: photoHome,
-            hoverUrl: photoHomeBack,
-            color : corPoke
+            photoP: pokePhoto,
+            hoverUrl: photo1,
+            color : corPoke,
+            color2 : "grey"
         }
-       
+
+        // console.log(pokeDados)
     return (
         <TestandoHei > 
+          
             <ContainerHome color={logos.color}     >
                     <Logo               
                     background={logos.photoP} 
                     hoverBackground={logos.hoverUrl}/>
                     <p>{props.pokemonsName.toUpperCase()}</p>
+                    {/* <p>{pokeDados.name}</p> */}
                     <DivButton>
-                        <img onClick={() => navigate(`${props.pokemonsName}`)}  src={detalhes}/>
-                        <img src={adicionar}/>
-                        {/* <button onClick={() => addPokedex(props.pokeName)}> ver</button> */}
+                        <img onClick={()=> navigate(`${props.pokemonsName}`) } src={detalhes}/>
+                        <img onClick={() =>addInPokedex(pokeDados) } src={adicionar} />
+                        {/* <button onClick={() => addInPokedex(props.pokeName)}> ver</button> */}
+                       
                     </DivButton>
-            
             </ContainerHome>
-        
+       
            
         </TestandoHei>
      
