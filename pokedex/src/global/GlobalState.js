@@ -50,10 +50,22 @@ const GlobalState = (props) =>{
     }
     
 
+    const removePokemon = (pokemon)=>{
+        const newPokedex = [...pokedex]
+        const index = newPokedex.findIndex ((url, index)=>{
+            if(url.url === pokemon){
+                return index
+            }
+        })
+
+        newPokedex.splice (index, 1)
+        setPokedex(newPokedex)
+    }
+
  
 
     const states= {name , abilities , stats , type , photoFront , photoBack , pokedex}
-    const requests = {detailsPokemon , addInPokedex}
+    const requests = {detailsPokemon , addInPokedex, removePokemon}
     return(
     <GlobalStateDetails.Provider value={{states , requests}}>
       {props.children}
