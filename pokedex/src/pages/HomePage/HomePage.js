@@ -10,25 +10,35 @@ import TestandoLogo from "../../Teste/testehover";
 
 const HomePage = (props)=>{
    const [dataPokemon , setDataPokemon] = useState([])
+    const [newOffSet , setNewOffSet] = useState("")
+    const [ offset, setOffset] = useState(0)
+   
+    
 
    useEffect(()=>{
-    const url =" https://pokeapi.co/api/v2/pokemon/"
-
+    const url =`https://pokeapi.co/api/v2/pokemon/?limit=28&offset=${offset}`
     axios.get(url).then((res)=>{
         setDataPokemon(res.data.results)
+        
         // console.log(res.data.results)
         
     }).catch((err)=>{
         console.log(err.response)
     })
 
-   } ,[])
-   
+   } ,[offset])
 
-   const mapearPokemon = dataPokemon.map((pokemons,index)=>{
-        return <div key={index}>
+   const addPoke = (id)=>{
+    const addPoke20 = offset + id;
+    setOffset(addPoke20)
+    setNewOffSet(String(offset))
+    console.log(offset)
+   }
+ 
+   const mapearPokemon = dataPokemon.map((pokemons)=>{
+        return <div key={pokemons.name}>
             <HomePageComponent
-             pokemonsName={pokemons.name} pokemon={pokemons}/>
+             pokemonsName={pokemons.name}/>
             
             </div>
         
@@ -40,6 +50,9 @@ const HomePage = (props)=>{
             <Header/>
             <ContainerHome1>
             {mapearPokemon}
+            <button onClick={()=>addPoke(30)}>Proximo</button>
+            <button onClick={()=>addPoke(-30)}>Anterior</button>
+           
             </ContainerHome1>
         </div>
     )
