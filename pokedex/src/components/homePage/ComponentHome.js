@@ -15,7 +15,7 @@ import { GlobalStateDetails } from "../../global/GlobalStateDetails";
 const HomePageComponent = (props) => {
     const {states ,requests } = useContext(GlobalStateDetails); 
     
-    const [pokePhoto, photo1 , pokeDados] = useRequestData(`https://pokeapi.co/api/v2/pokemon/${props.pokemonsName}`)
+    const [pokePhoto, photo1 , pokeDados , setPokeDados] = useRequestData(`https://pokeapi.co/api/v2/pokemon/${props.pokemonsName}`)
     
 
     const [corPoke] = useColorPoke(`https://pokeapi.co/api/v2/pokemon-species/${props.pokemonsName}`)
@@ -45,7 +45,6 @@ const HomePageComponent = (props) => {
             photoP: pokePhoto,
             hoverUrl: photo1,
             color : corPoke,
-            color2 : "grey"
         }
 
         // console.log(pokeDados)
@@ -60,7 +59,7 @@ const HomePageComponent = (props) => {
                     {/* <p>{pokeDados.name}</p> */}
                     <DivButton>
                         <img onClick={()=> navigate(`${props.pokemonsName}`) } src={detalhes}/>
-                        <img onClick={() =>addInPokedex(pokeDados) } src={adicionar} />
+                        <img onClick={() =>addInPokedex(pokeDados)} src={adicionar} />
                         {/* <button onClick={() => addInPokedex(props.pokeName)}> ver</button> */}
                        
                     </DivButton>

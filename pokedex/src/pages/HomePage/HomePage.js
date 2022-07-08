@@ -6,7 +6,8 @@ import { ContainerHome1 } from "./HomePageStyled";
 import styled from "styled-components";
 import GlobalStyle from "../../GlobalStyled";
 import TestandoLogo from "../../Teste/testehover";
-
+import setaDireita from '../../img/setaDireita1.png'
+import setaEsquerda from '../../img/setaEsquerda1.png'
 
 const HomePage = (props)=>{
    const [dataPokemon , setDataPokemon] = useState([])
@@ -32,6 +33,8 @@ const HomePage = (props)=>{
     const addPoke20 = offset + id;
     setOffset(addPoke20)
     setNewOffSet(String(offset))
+
+  
     console.log(offset)
    }
  
@@ -50,8 +53,12 @@ const HomePage = (props)=>{
             <Header/>
             <ContainerHome1>
             {mapearPokemon}
-            <button onClick={()=>addPoke(30)}>Proximo</button>
-            <button onClick={()=>addPoke(-30)}>Anterior</button>
+            <div>   
+                <img src={setaEsquerda} onClick={()=>addPoke(-30)}/> 
+                <img  src={setaDireita} onClick={()=>addPoke(30)}/>
+
+            </div>
+            
            
             </ContainerHome1>
         </div>

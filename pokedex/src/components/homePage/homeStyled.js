@@ -9,13 +9,20 @@ export const ContainerHome = styled.div`
    background-color: ${props => props.color};
    margin: 15px;
    
+   @media (max-width: 480px){
+  
+   width: 40vw;
+   gap: 20px;
+   height: auto;
+}
 
 `
 export const DivButton = styled.div`
     display: flex;
     justify-content: space-around;
-    margin: 30px;
     width: 100%;
+   
+
 `
 
 
@@ -26,9 +33,7 @@ export const DivButton = styled.div`
       width: 6em;
       &:hover {
         background: ${props =>
-          `url(${props.hoverBackground}) `};
-      
-        
+          `url(${props.hoverBackground}) `}; 
        
       }
     `;
@@ -36,4 +41,8 @@ export const DivButton = styled.div`
 export const TestandoHei = styled.div`
    height: 100%;
    max-height: auto;
+   
+  
+
+
 `
