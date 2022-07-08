@@ -17,7 +17,7 @@ const useRequestData = (url) =>{
             console.log(err.response)
         })
     },[url])
-    return([photo, photo1 ,pokeDados])
+    return([photo, photo1 ,pokeDados , setPokeDados])
 }
 
 export default useRequestData

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import background from '../../img/backgroundPokedex.png'
 
 export const HeaderPokedex = styled.header`
   align-items: center;
@@ -12,6 +13,7 @@ export const HeaderPokedex = styled.header`
   height: 105px;
   display: flex;
   justify-content: space-between;
+  
 `
 
 export const ButtonBack = styled.button`
@@ -45,13 +47,26 @@ export const CardContainer = styled.div`
   margin-left: 3em;
   margin-top: 2em;
   width: 20em;
-  height: 16em;
+  height: 20em;
   padding: 5px;
   background-color: #38abed;
   border: 1px black solid;
   border-radius: 8px;
+
 `
 
+export const ContainerHome = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: baseline;
+ width: 100%;
+ height: 100%;
+ 
+`
+export const Background = styled.div`
+  background-color: blue;
+`
 export const DivImage = styled.img`
   width: 10em;
   height: 10em;

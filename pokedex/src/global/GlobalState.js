@@ -23,7 +23,7 @@ const GlobalState = (props) =>{
             setType(res.data.types)
             setPhotoFront(res.data.sprites.other.dream_world.front_default)
             setPhotoBack(res.data.sprites.other.dream_world.back_default)
-           
+            
            
         }).catch((err)=>{
             console.log(err.response)
@@ -31,7 +31,7 @@ const GlobalState = (props) =>{
 
     }
     
-    const color2 = "grey"
+   
     const addInPokedex = (product)=>{
        const index = pokedex.findIndex((pokemonsInPokedex)=>{
         if(pokemonsInPokedex.name === product.name){
@@ -40,6 +40,8 @@ const GlobalState = (props) =>{
             return false
         }
        })
+    //    const novaLista = [...product]
+    //    novaLista.splice(index , 1)
        if(index === -1){
         const newPokedex = [...pokedex , product]
         setPokedex(newPokedex)
@@ -51,15 +53,11 @@ const GlobalState = (props) =>{
     
 
     const removePokemon = (pokemon)=>{
-        const newPokedex = [...pokedex]
-        const index = newPokedex.findIndex ((url, index)=>{
-            if(url.url === pokemon){
-                return index
-            }
-        })
+        var myArray = [...pokedex]
+        myArray.splice(0,1)
+        setPokedex(myArray)
 
-        newPokedex.splice (index, 1)
-        setPokedex(newPokedex)
+     
     }
 
  

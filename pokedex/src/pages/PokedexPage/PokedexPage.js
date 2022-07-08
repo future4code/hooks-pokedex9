@@ -6,19 +6,21 @@ import {
   ButtonBack,
   ButtonsPokedex,
   CardContainer,
+  ContainerHome,
+  Background,
   DivButtons,
   DivImage,
   Name
 } from './PokedexPageStyled'
 import { HeaderStyled } from '../../components/header/headerStyled'
-import { ContainerHome1 } from '../HomePage/HomePageStyled'
+
 
 const PokedexPage = props => {
   const navigate = useNavigate('')
   const { states, requests } = useContext(GlobalStateDetails)
   const { pokedex } = states
   const { removePokemon } = requests
-
+ 
   const mapPokedex =
     pokedex &&
     pokedex.map((poke, index) => {
@@ -27,7 +29,7 @@ const PokedexPage = props => {
           <DivImage src={poke.sprites.other.dream_world.front_default} />
           <Name>{poke.name}</Name>
           <DivButtons>
-            <ButtonsPokedex onClick={()=>removePokemon(props.url)}>Deletar</ButtonsPokedex>
+            <ButtonsPokedex onClick={()=>removePokemon(poke)}>Deletar</ButtonsPokedex>
             <ButtonsPokedex
               onClick={() => {
                 navigate(`/${poke.name}`)
@@ -37,17 +39,27 @@ const PokedexPage = props => {
             </ButtonsPokedex>
           </DivButtons>
         </CardContainer>
+    
       )
     })
 
   return (
     <>
+      <Background>
       <HeaderStyled>
         <h1>POKEDEX</h1>
 
         <ButtonBack onClick={() => goBack(navigate)}>Voltar</ButtonBack>
       </HeaderStyled>
-      <ContainerHome1>{mapPokedex}</ContainerHome1>
+
+      <ContainerHome>
+        <div>
+
+        {mapPokedex}
+        </div>
+        </ContainerHome>
+        
+      </Background>
     </>
   )
 }

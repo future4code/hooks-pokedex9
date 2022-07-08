@@ -59,8 +59,12 @@ border-bottom: 1px solid black;
 
 `
 export const CardImagePokeSrc = styled.img`
-width: 200px;
-height: 200px;
+width: 12em;
+height: 12em;
+  @media (max-width: 480px){
+         height: 10em;
+         width: 10em
+      }
 `
 
 export const CardHabilidade = styled.div`
