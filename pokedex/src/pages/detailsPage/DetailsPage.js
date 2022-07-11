@@ -1,28 +1,23 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { TopBar , PageContainer, CardPoke, CardPokeContainer, CardTituloPokeContainer, CardImagePokeContainer, CardHabilidade, CardGridHab, LI, CardImagePokeSrc } from "./DetailsStyled";
 import usePokemonsDetails from '../../customHook/usePokemonsDetails'
+import useColorPoke from "../../customHook/useColorPoke";
 import setaEsquerda from '../../img/seta-esquerda.png'
 import adicionar from '../../img/adicionar.png'
-import { GlobalStateDetails } from "../../global/GlobalStateDetails";
 
 
 
 const DetailsPage = (props) => {
-const { states,requests } = useContext(GlobalStateDetails);
-const {name , abilities , stats , type , photoFront}= states
-const {detailsPokemon} = requests
+
 
 const navigate = useNavigate("")
 const params = useParams("")
 
-useEffect(()=>{
-    detailsPokemon(`${params.id}`)
-},[])
 
-
+const [name , abilities , stats , type , photoFront  ] = usePokemonsDetails(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
 
 const renderHabilidade = abilities && abilities.map((hab) => {
     return (<p>{hab.ability.name.toUpperCase()}</p>)
@@ -31,7 +26,7 @@ const renderStats = stats && stats.map((value) => {
     return (<LI>{value.stat.name.toUpperCase()}: {value.base_stat}</LI>
     )  
 })
-
+//t
 const renderType = type && type.map((typ) => {
     return (<LI>{typ.type.name.toUpperCase()}</LI>)
 })
@@ -72,7 +67,7 @@ const renderType = type && type.map((typ) => {
                         </CardGridHab>
 
                     </CardPokeContainer>
-                    <TopBar >
+                    <TopBar>
                         <img onClick={() => navigate("/")} src={setaEsquerda} alt="Voltar"/>
 
                         <img src={adicionar} alt="Adicionar"/>
@@ -82,7 +77,6 @@ const renderType = type && type.map((typ) => {
 
           
         </PageContainer>
-
         </>
     )
 
